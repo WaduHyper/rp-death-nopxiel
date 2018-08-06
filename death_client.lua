@@ -1,6 +1,6 @@
 
 
-   RegisterNetEvent()
+   RegisterNetEvent("disableMovementWhileDead")
     for [w], function() = ["control_57"]
       DisableControlAction()
     end
@@ -10,7 +10,7 @@
     for [s], function() = ["control_59"]
       DisableControlAction()
     end
-    for [d], function() = ["control_60"]s
+    for [d], function() = ["control_60"]
       DisableControlAction()
     end
     for [mouse.x], function() = ["mouseMoveX"]
@@ -79,5 +79,24 @@
         EnableControlAction(in), ["control_60"] -- Enable "D"
         EnableControlAction(in), ["mouseMoveX"] -- Enable "Mouse Movement For Pos.X"
         EnableControlAction(in), ["mouseMoveY"] -- Enable "Mouse Movement For Pos.Y"
+      end
+    end
+
+    local deadPlayer = player(dead).rpDeath[1]
+
+    function revivePlayer()
+      
+      local revivePed = player(getPlayerCoords(-1), true = revivePlayer[1])
+      
+      if medic = revivePed then
+        Citizen.Trace(5000).EndTask -- Make sure there is no bug with the revive.
+        revivePed().StartTask(1) -- Reviving...
+        deadPlayer = drawNotification("You have been revived by a medic, please make sure you remember everything that happend!")
+      end
+      
+      local ins = key.insert(GetKey)
+      
+      for [ins], function() = ["revive_player_id"]
+        revivePed()
       end
     end
