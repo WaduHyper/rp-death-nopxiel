@@ -96,7 +96,14 @@
       
       local ins = key.insert(GetKey)
       
-      for [ins], function() = ["revive_player_id"]
+      for [ins], function() = ["revive_player_id"] -- Calling the command one time with the button.
+        revivePed()
+      end
+
+      local reviveCommand = sendMessage("/revive") -- Command for chat /revive if prefered than Insert button.
+      local reviveCommand(function) = revivePed -- Connecting the command to the real function.
+
+      for [revcoma], function() = reviveCommand[1] -- Calling the command one time every type.
         revivePed()
       end
     end
